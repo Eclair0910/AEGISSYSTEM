@@ -79,7 +79,7 @@ npm run build:browser
 
 GitHub Pagesでデモ版を公開しています。
 
-**[デモサイトを見る](https://YOUR_USERNAME.github.io/AEGISSYSTEM/)**
+**[デモサイトを見る](https://eclair0910.github.io/AEGISSYSTEM/)**
 
 > ⚠️ 注意: ブラウザ版では一部のシステム情報取得機能が制限されています。完全な機能を利用するにはElectronアプリをダウンロードしてください。
 
