@@ -1,0 +1,89 @@
+@import '../../../shared/styles/variables.scss';
+@import '../../../shared/styles/mixins.scss';
+@import '../../../shared/styles/animations.scss';
+
+.cyber-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+
+  .cyber-pattern-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    .cyber-pattern-image {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      will-change: transform;
+    }
+
+    // パターン1: 外側ドーナツ (750-850) - ゆっくり回転
+    &.pattern-1 {
+      width: 1600px;
+      height: 1600px;
+      opacity: 0.18;
+
+      .cyber-pattern-image {
+        animation: rotate 100s linear infinite;
+      }
+    }
+
+    // パターン2: 中間ドーナツ (450-550) - 逆回転
+    &.pattern-2 {
+      width: 1000px;
+      height: 1000px;
+      opacity: 0.22;
+
+      .cyber-pattern-image {
+        animation: rotate 70s linear infinite reverse;
+      }
+    }
+
+    // パターン4: 対になる1/6弧 (外側のみ) - 高速回転
+    &.pattern-4 {
+      width: 1300px;
+      height: 1300px;
+      opacity: 0.20;
+
+      .cyber-pattern-image {
+        animation: rotate 12s linear infinite;
+      }
+    }
+
+    // パターン3: 内側ドーナツ (200-350) - 回転
+    &.pattern-3 {
+      width: 600px;
+      height: 600px;
+      opacity: 0.25;
+
+      .cyber-pattern-image {
+        animation: rotate 50s linear infinite;
+      }
+    }
+  }
+
+  // 軽量なグローエフェクト（中央のみ）
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(
+      circle,
+      rgba($primary-color, 0.06) 0%,
+      transparent 70%
+    );
+    pointer-events: none;
+  }
+}

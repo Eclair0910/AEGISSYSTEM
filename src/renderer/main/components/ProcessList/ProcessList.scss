@@ -1,0 +1,92 @@
+@import '../../../shared/styles/variables.scss';
+@import '../../../shared/styles/mixins.scss';
+
+.process-list {
+  @include card($spacing-lg);
+  @include flex-column($spacing-md);
+
+  .process-header {
+    h3 {
+      font-size: $font-size-lg;
+      color: $primary-color;
+      @include text-glow($primary-color, 0.5);
+      margin: 0;
+    }
+  }
+
+  .process-table {
+    @include flex-column($spacing-xs);
+    font-size: $font-size-sm;
+
+    .table-header {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1.5fr 2fr;
+      gap: $spacing-sm;
+      padding: $spacing-sm $spacing-md;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: $border-radius-sm;
+      font-weight: 600;
+      color: $text-secondary;
+    }
+
+    .table-body {
+      @include flex-column($spacing-xs);
+      max-height: 300px;
+      overflow-y: auto;
+      @include custom-scrollbar(6px);
+
+      .table-row {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1.5fr 2fr;
+        gap: $spacing-sm;
+        padding: $spacing-sm $spacing-md;
+        background: rgba(255, 255, 255, 0.02);
+        border-radius: $border-radius-sm;
+        border-left: 2px solid transparent;
+        transition: all $transition-speed $ease-out-cubic;
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.05);
+          border-left-color: $primary-color;
+        }
+
+        .col-name {
+          color: $text-primary;
+          font-weight: 500;
+        }
+
+        .col-pid,
+        .col-memory {
+          color: $text-secondary;
+        }
+
+        .col-percent {
+          @include flex-row($spacing-sm);
+          align-items: center;
+
+          .percent-bar {
+            flex: 1;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: $border-radius-sm;
+            overflow: hidden;
+
+            .percent-fill {
+              height: 100%;
+              background: linear-gradient(90deg, $primary-color, lighten($primary-color, 10%));
+              transition: width 0.3s $ease-out-cubic;
+              border-radius: $border-radius-sm;
+            }
+          }
+
+          span {
+            min-width: 45px;
+            text-align: right;
+            color: $primary-color;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+  }
+}

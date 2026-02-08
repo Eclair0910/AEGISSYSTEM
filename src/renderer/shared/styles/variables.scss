@@ -1,0 +1,59 @@
+// カラーパレット（近未来SF）
+$primary-color: #00d9ff;      // サイバーブルー
+$secondary-color: #ff006e;    // ネオンピンク
+$accent-color: #7b2cbf;       // ディープパープル
+$bg-dark: #0a0e27;            // ダークブルー背景
+$bg-darker: #050816;          // より暗い背景
+$text-primary: #e0e0e0;       // メインテキスト
+$text-secondary: #9ca3af;     // サブテキスト
+
+// タイポグラフィ
+$font-family: 'Roboto', 'Segoe UI', sans-serif;
+$font-size-xs: 12px;
+$font-size-sm: 14px;
+$font-size-base: 16px;
+$font-size-lg: 18px;
+$font-size-xl: 24px;
+$font-size-xxl: 32px;
+
+// スペーシング
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+$spacing-xxl: 48px;
+
+// ボーダー
+$border-radius-sm: 4px;
+$border-radius-md: 8px;
+$border-radius-lg: 12px;
+$border-radius-xl: 16px;
+$border-radius-circle: 50%;
+
+// アニメーション
+$transition-speed: 0.3s;
+$transition-speed-fast: 0.15s;
+$transition-speed-slow: 0.5s;
+$ease-out-cubic: cubic-bezier(0.33, 1, 0.68, 1);
+$ease-in-out-cubic: cubic-bezier(0.65, 0, 0.35, 1);
+
+// グロー効果
+$glow-primary: 0 0 10px rgba(0, 217, 255, 0.5),
+               0 0 20px rgba(0, 217, 255, 0.3),
+               0 0 30px rgba(0, 217, 255, 0.1);
+
+$glow-secondary: 0 0 10px rgba(255, 0, 110, 0.5),
+                 0 0 20px rgba(255, 0, 110, 0.3),
+                 0 0 30px rgba(255, 0, 110, 0.1);
+
+$glow-accent: 0 0 10px rgba(123, 44, 191, 0.5),
+              0 0 20px rgba(123, 44, 191, 0.3),
+              0 0 30px rgba(123, 44, 191, 0.1);
+
+// Z-index
+$z-background: -1;
+$z-content: 1;
+$z-overlay: 10;
+$z-modal: 100;
+$z-tooltip: 1000;

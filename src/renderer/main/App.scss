@@ -1,0 +1,31 @@
+@import '../shared/styles/variables.scss';
+@import '../shared/styles/mixins.scss';
+
+.app {
+  width: 100vw;
+  height: 100vh;
+  @include gradient-bg(135deg, $bg-darker, $bg-dark);
+  position: relative;
+  overflow: hidden;
+
+  .app-layout {
+    @include flex-row(0);
+    width: 100%;
+    height: 100%;
+    padding-top: 0; // Default for browser
+
+    .main-content {
+      flex: 1;
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      @include custom-scrollbar;
+      @include fade-in(0.5s, 0.2s);
+    }
+  }
+
+  // Only apply padding when window controls are rendered
+  &:has(.window-controls-wrapper) .app-layout {
+    padding-top: 40px; // Window controls height
+  }
+}

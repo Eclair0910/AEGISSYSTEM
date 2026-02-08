@@ -1,0 +1,25 @@
+@import '../../../shared/styles/variables.scss';
+@import '../../../shared/styles/mixins.scss';
+
+.logo-page {
+  @include flex-column($spacing-lg);
+  padding: $spacing-xl;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+
+  .page-header {
+    @include page-header;
+  }
+
+  .animation-container {
+    flex: 1;
+    position: relative;
+    min-height: 500px;
+    background: rgba($bg-darker, 0.5);
+    border: 1px solid rgba($primary-color, 0.2);
+    border-radius: $border-radius-md;
+    overflow: hidden;
+  }
+}
