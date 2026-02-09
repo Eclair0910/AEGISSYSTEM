@@ -6,10 +6,12 @@ import path from 'path';
 export default defineConfig({
   plugins: [react()],
   root: 'src/renderer',
-  publicDir: '../../public',
+  publicDir: path.resolve(__dirname, 'public'),
   build: {
-    outDir: '../../dist-browser',
-    emptyOutDir: true
+    outDir: path.resolve(__dirname, 'dist-browser'),
+    emptyOutDir: true,
+    assetsDir: 'assets',
+    copyPublicDir: true
   },
   server: {
     port: 5173,
