@@ -1,0 +1,134 @@
+// ガラスモーフィズム効果
+@mixin glass-morphism($opacity: 0.05, $blur: 10px) {
+  background: rgba(255, 255, 255, $opacity);
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+// ネオングロー効果
+@mixin neon-glow($color, $intensity: 1) {
+  box-shadow: 0 0 (10px * $intensity) rgba($color, 0.5),
+              0 0 (20px * $intensity) rgba($color, 0.3),
+              0 0 (30px * $intensity) rgba($color, 0.1);
+}
+
+// テキストグロー効果
+@mixin text-glow($color, $intensity: 1) {
+  text-shadow: 0 0 (5px * $intensity) rgba($color, 0.8),
+               0 0 (10px * $intensity) rgba($color, 0.5),
+               0 0 (15px * $intensity) rgba($color, 0.3);
+}
+
+// 回転アニメーション
+@mixin rotate-animation($duration, $direction: normal) {
+  animation: rotate $duration linear infinite $direction;
+}
+
+// フェードインアニメーション
+@mixin fade-in($duration: 0.3s, $delay: 0s) {
+  animation: fade-in $duration $ease-out-cubic $delay forwards;
+}
+
+// スライドインアニメーション
+@mixin slide-in($from: bottom, $duration: 0.3s, $delay: 0s) {
+  animation: slide-in-#{$from} $duration $ease-out-cubic $delay forwards;
+}
+
+// Flexbox中央揃え
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Flexbox列レイアウト
+@mixin flex-column($gap: 0) {
+  display: flex;
+  flex-direction: column;
+  gap: $gap;
+}
+
+// Flexbox行レイアウト
+@mixin flex-row($gap: 0) {
+  display: flex;
+  flex-direction: row;
+  gap: $gap;
+}
+
+// 絶対位置中央揃え
+@mixin absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// ホバートランジション
+@mixin hover-transition($property: all) {
+  transition: $property $transition-speed $ease-out-cubic;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+// カード風スタイル
+@mixin card($padding: $spacing-md) {
+  @include glass-morphism;
+  padding: $padding;
+  border-radius: $border-radius-md;
+}
+
+// スクロールバーのカスタマイズ
+@mixin custom-scrollbar($width: 8px) {
+  &::-webkit-scrollbar {
+    width: $width;
+    height: $width;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: $width;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $primary-color;
+    border-radius: $width;
+
+    &:hover {
+      background: lighten($primary-color, 10%);
+    }
+  }
+}
+
+// グラデーション背景
+@mixin gradient-bg($angle: 135deg, $color1: $bg-darker, $color2: $bg-dark) {
+  background: linear-gradient($angle, $color1 0%, $color2 100%);
+}
+
+// ボーダーグロー
+@mixin border-glow($color: $primary-color) {
+  border: 1px solid $color;
+  box-shadow: 0 0 10px rgba($color, 0.5),
+              inset 0 0 10px rgba($color, 0.2);
+}
+
+// ページヘッダー（タイトル + 区切り線）
+@mixin page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $spacing-lg;
+  padding-bottom: $spacing-md;
+  border-bottom: 1px solid rgba($primary-color, 0.3);
+
+  .page-title {
+    font-size: $font-size-xxl;
+    color: $primary-color;
+    @include text-glow($primary-color, 0.8);
+    font-weight: 600;
+    margin: 0;
+  }
+}

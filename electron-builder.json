@@ -1,0 +1,26 @@
+{
+  "appId": "com.aegissystem.app",
+  "productName": "AEGISSystem",
+  "directories": {
+    "output": "release",
+    "buildResources": "public"
+  },
+  "files": [
+    "dist/**/*",
+    "package.json"
+  ],
+  "win": {
+    "target": ["nsis"],
+    "icon": "public/icons/icon.ico"
+  },
+  "mac": {
+    "target": ["dmg"],
+    "icon": "public/icons/icon.icns",
+    "category": "public.app-category.utilities"
+  },
+  "linux": {
+    "target": ["AppImage"],
+    "icon": "public/icons/icon.png",
+    "category": "Utility"
+  }
+}

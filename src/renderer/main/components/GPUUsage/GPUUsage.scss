@@ -1,0 +1,110 @@
+@import '../../../shared/styles/variables.scss';
+@import '../../../shared/styles/mixins.scss';
+
+.gpu-usage-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: $spacing-xl;
+  width: 100%;
+}
+
+.gpu-usage {
+  @include card($spacing-lg);
+  @include flex-column($spacing-lg);
+
+  .card-header {
+    @include flex-row($spacing-md);
+    justify-content: space-between;
+    align-items: flex-start;
+
+    h3 {
+      font-size: $font-size-lg;
+      color: $accent-color;
+      @include text-glow($accent-color, 0.5);
+      margin: 0 0 $spacing-xs 0;
+    }
+
+    .gpu-model {
+      font-size: $font-size-sm;
+      color: $text-secondary;
+      margin: 0;
+    }
+
+    .icon {
+      font-size: $font-size-xl;
+    }
+  }
+
+  .gpu-metrics {
+    @include flex-column($spacing-md);
+
+    .metric-item {
+      @include flex-column($spacing-xs);
+
+      .metric-label {
+        font-size: $font-size-sm;
+        color: $text-secondary;
+      }
+
+      .metric-value {
+        @include flex-row($spacing-md);
+        align-items: center;
+
+        .progress-bar-container {
+          flex: 1;
+          height: 20px;
+          background: rgba(255, 255, 255, 0.05);
+          border-radius: $border-radius-md;
+          overflow: hidden;
+          position: relative;
+
+          .progress-bar {
+            height: 100%;
+            transition: width 0.3s $ease-out-cubic;
+            position: relative;
+            border-radius: $border-radius-md;
+
+            &.gpu-bar {
+              background: linear-gradient(90deg, $accent-color, lighten($accent-color, 10%));
+              @include neon-glow($accent-color, 0.8);
+            }
+
+            &.memory-bar {
+              background: linear-gradient(90deg, $secondary-color, lighten($secondary-color, 10%));
+              @include neon-glow($secondary-color, 0.8);
+            }
+          }
+        }
+
+        .percentage {
+          min-width: 50px;
+          text-align: right;
+          font-weight: 600;
+          color: $accent-color;
+        }
+      }
+    }
+  }
+
+  .gpu-details {
+    @include flex-column($spacing-sm);
+    padding-top: $spacing-sm;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+    .detail-row {
+      @include flex-row($spacing-md);
+      justify-content: space-between;
+
+      .label {
+        color: $text-secondary;
+        font-size: $font-size-sm;
+      }
+
+      .value {
+        color: $text-primary;
+        font-weight: 600;
+        font-size: $font-size-sm;
+      }
+    }
+  }
+}

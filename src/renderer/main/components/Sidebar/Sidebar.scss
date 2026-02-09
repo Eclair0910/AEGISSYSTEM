@@ -1,0 +1,230 @@
+@import '../../../shared/styles/variables.scss';
+@import '../../../shared/styles/mixins.scss';
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 220px;
+  height: 100vh;
+  background: rgba($bg-darker, 0.95);
+  backdrop-filter: blur(10px);
+  border-right: 1px solid rgba($primary-color, 0.15);
+  transition: width 0.25s ease;
+
+  // Brand section
+  .sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    padding: $spacing-lg $spacing-md;
+
+    .brand-logo {
+      font-family: $font-family;
+      font-size: $font-size-lg;
+      font-weight: 700;
+      color: $primary-color;
+      letter-spacing: 2px;
+    }
+
+    .brand-name {
+      font-size: $font-size-sm;
+      color: $text-secondary;
+      letter-spacing: 1px;
+    }
+  }
+
+  // Toggle button - VSCode style
+  .sidebar-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 $spacing-md $spacing-md;
+    padding: $spacing-sm;
+    background: transparent;
+    border: none;
+    border-radius: $border-radius-sm;
+    color: $text-secondary;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+
+    &:hover {
+      background: rgba($text-primary, 0.1);
+      color: $text-primary;
+    }
+
+    svg {
+      font-size: 20px;
+    }
+  }
+
+  // Navigation
+  .sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 0 $spacing-sm;
+    flex: 1;
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: $spacing-md;
+      position: relative;
+      padding: $spacing-sm $spacing-md;
+      background: transparent;
+      border: none;
+      border-radius: $border-radius-sm;
+      color: $text-secondary;
+      cursor: pointer;
+      transition: background 0.15s ease, color 0.15s ease;
+      text-align: left;
+      width: 100%;
+
+      .nav-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: inherit;
+
+        svg {
+          font-size: 22px;
+        }
+      }
+
+      .nav-label {
+        font-size: $font-size-sm;
+        font-weight: 500;
+        white-space: nowrap;
+      }
+
+      .active-bar {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 3px;
+        height: 60%;
+        background: $primary-color;
+        border-radius: 0 2px 2px 0;
+      }
+
+      &:hover {
+        background: rgba($text-primary, 0.08);
+        color: $text-primary;
+      }
+
+      &.active {
+        background: rgba($primary-color, 0.1);
+        color: $primary-color;
+      }
+    }
+  }
+
+  // Footer
+  .sidebar-footer {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+    padding: $spacing-md $spacing-sm;
+    border-top: 1px solid rgba($text-primary, 0.05);
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: $spacing-md;
+      padding: $spacing-sm $spacing-md;
+      background: transparent;
+      border: none;
+      border-radius: $border-radius-sm;
+      color: $text-secondary;
+      cursor: pointer;
+      transition: background 0.15s ease, color 0.15s ease;
+      text-align: left;
+      width: 100%;
+
+      .nav-icon {
+        display: flex;
+        color: inherit;
+
+        svg {
+          font-size: 20px;
+        }
+      }
+
+      .nav-label {
+        font-size: $font-size-sm;
+      }
+
+      &:hover {
+        background: rgba($text-primary, 0.08);
+        color: $text-primary;
+      }
+    }
+
+    .status {
+      display: flex;
+      align-items: center;
+      gap: $spacing-sm;
+      padding: $spacing-xs $spacing-md;
+
+      .status-dot {
+        width: 6px;
+        height: 6px;
+        background: #00cc66;
+        border-radius: 50%;
+      }
+
+      .status-text {
+        font-size: $font-size-xs;
+        color: $text-secondary;
+      }
+    }
+  }
+
+  // Collapsed state
+  &.collapsed {
+    width: 64px;
+
+    .sidebar-brand {
+      justify-content: center;
+      padding: $spacing-md $spacing-sm;
+
+      .brand-name {
+        display: none;
+      }
+    }
+
+    .sidebar-toggle {
+      margin: 0 $spacing-sm $spacing-md;
+    }
+
+    .sidebar-nav .nav-item {
+      justify-content: center;
+      padding: $spacing-sm;
+
+      .nav-label,
+      .active-bar {
+        display: none;
+      }
+    }
+
+    .sidebar-footer {
+      .nav-item {
+        justify-content: center;
+        padding: $spacing-sm;
+
+        .nav-label {
+          display: none;
+        }
+      }
+
+      .status {
+        justify-content: center;
+
+        .status-text {
+          display: none;
+        }
+      }
+    }
+  }
+}

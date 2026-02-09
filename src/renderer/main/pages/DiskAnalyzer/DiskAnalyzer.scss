@@ -1,0 +1,407 @@
+@import '../../../shared/styles/variables.scss';
+@import '../../../shared/styles/mixins.scss';
+
+.disk-analyzer-page {
+  @include flex-column($spacing-lg);
+  padding: $spacing-xl;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+
+  &.loading {
+    @include flex-center;
+    height: 100%;
+    text-align: center;
+
+    p {
+      margin-top: $spacing-md;
+      color: $text-secondary;
+      font-size: $font-size-lg;
+    }
+  }
+
+  .page-header {
+    @include page-header;
+
+    .refresh-button {
+      display: flex;
+      align-items: center;
+      gap: $spacing-xs;
+      padding: $spacing-sm $spacing-md;
+      background: rgba($primary-color, 0.15);
+      border: 1px solid rgba($primary-color, 0.3);
+      border-radius: $border-radius-md;
+      color: $primary-color;
+      cursor: pointer;
+      transition: all $transition-speed-fast ease;
+
+      &:hover {
+        background: rgba($primary-color, 0.25);
+        border-color: rgba($primary-color, 0.5);
+      }
+
+      svg {
+        font-size: 18px;
+      }
+    }
+  }
+
+  // Drives Section
+  .drives-section {
+    @include card($spacing-lg);
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: $spacing-sm;
+      margin-bottom: $spacing-lg;
+      padding-bottom: $spacing-sm;
+      border-bottom: 1px solid rgba($primary-color, 0.2);
+
+      .section-icon {
+        color: $primary-color;
+        font-size: 24px;
+      }
+
+      h2 {
+        font-size: $font-size-lg;
+        color: $text-primary;
+        font-weight: 500;
+        margin: 0;
+      }
+    }
+
+    .drives-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: $spacing-md;
+
+      .drive-card {
+        background: rgba($bg-darker, 0.5);
+        border: 1px solid rgba($primary-color, 0.15);
+        border-radius: $border-radius-md;
+        padding: $spacing-md;
+        cursor: pointer;
+        transition: all $transition-speed-fast ease;
+
+        &:hover {
+          background: rgba($bg-darker, 0.7);
+          border-color: rgba($primary-color, 0.3);
+        }
+
+        &.selected {
+          border-color: $primary-color;
+          @include neon-glow($primary-color, 0.3);
+        }
+
+        .drive-header {
+          display: flex;
+          align-items: center;
+          gap: $spacing-sm;
+          margin-bottom: $spacing-md;
+
+          .drive-icon {
+            font-size: 32px;
+            color: $primary-color;
+          }
+
+          .drive-info {
+            flex: 1;
+
+            .drive-letter {
+              display: block;
+              font-size: $font-size-lg;
+              font-weight: 600;
+              color: $text-primary;
+            }
+
+            .drive-label {
+              font-size: $font-size-sm;
+              color: $text-secondary;
+            }
+          }
+
+          .drive-type {
+            padding: $spacing-xs $spacing-sm;
+            background: rgba($primary-color, 0.15);
+            border-radius: $border-radius-sm;
+            font-size: $font-size-xs;
+            color: $primary-color;
+            font-weight: 500;
+          }
+        }
+
+        .drive-usage {
+          margin-bottom: $spacing-sm;
+
+          .usage-bar {
+            height: 8px;
+            background: rgba($bg-dark, 0.8);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: $spacing-xs;
+
+            .usage-fill {
+              height: 100%;
+              border-radius: 4px;
+              transition: width $transition-speed ease;
+              box-shadow: 0 0 10px currentColor;
+            }
+          }
+
+          .usage-text {
+            display: flex;
+            justify-content: space-between;
+            font-size: $font-size-xs;
+            color: $text-secondary;
+          }
+        }
+
+        .drive-footer {
+          display: flex;
+          justify-content: space-between;
+          padding-top: $spacing-sm;
+          border-top: 1px solid rgba($primary-color, 0.1);
+
+          .total-size {
+            font-size: $font-size-sm;
+            color: $text-primary;
+            font-weight: 500;
+          }
+
+          .file-system {
+            font-size: $font-size-xs;
+            color: $text-secondary;
+          }
+        }
+      }
+    }
+  }
+
+  // Analysis Section
+  .analysis-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-lg;
+
+    @media (max-width: 1200px) {
+      grid-template-columns: 1fr;
+    }
+
+    .panel-header {
+      display: flex;
+      align-items: center;
+      gap: $spacing-sm;
+      margin-bottom: $spacing-md;
+      padding-bottom: $spacing-sm;
+      border-bottom: 1px solid rgba($primary-color, 0.2);
+
+      .panel-icon {
+        color: $primary-color;
+        font-size: 20px;
+      }
+
+      h3 {
+        flex: 1;
+        font-size: $font-size-base;
+        color: $text-primary;
+        font-weight: 500;
+        margin: 0;
+      }
+
+      .analyze-button {
+        padding: $spacing-xs $spacing-md;
+        background: rgba($primary-color, 0.15);
+        border: 1px solid rgba($primary-color, 0.3);
+        border-radius: $border-radius-sm;
+        color: $primary-color;
+        font-size: $font-size-sm;
+        cursor: pointer;
+        transition: all $transition-speed-fast ease;
+
+        &:hover:not(:disabled) {
+          background: rgba($primary-color, 0.25);
+        }
+
+        &:disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+        }
+      }
+    }
+
+    .file-types-panel {
+      @include card($spacing-md);
+
+      .file-types-list {
+        @include flex-column($spacing-md);
+
+        .file-type-item {
+          display: flex;
+          gap: $spacing-md;
+          padding: $spacing-sm;
+          background: rgba($bg-darker, 0.3);
+          border-radius: $border-radius-sm;
+
+          .file-type-icon {
+            @include flex-center;
+            width: 40px;
+            height: 40px;
+            background: rgba($bg-dark, 0.5);
+            border-radius: $border-radius-sm;
+
+            svg {
+              font-size: 24px;
+            }
+          }
+
+          .file-type-info {
+            flex: 1;
+
+            .file-type-header {
+              display: flex;
+              justify-content: space-between;
+              margin-bottom: $spacing-xs;
+
+              .file-type-name {
+                font-size: $font-size-sm;
+                color: $text-primary;
+                font-weight: 500;
+              }
+
+              .file-type-size {
+                font-size: $font-size-sm;
+                color: $text-secondary;
+              }
+            }
+
+            .file-type-bar {
+              height: 4px;
+              background: rgba($bg-dark, 0.8);
+              border-radius: 2px;
+              overflow: hidden;
+              margin-bottom: $spacing-xs;
+
+              .file-type-fill {
+                height: 100%;
+                border-radius: 2px;
+                transition: width $transition-speed ease;
+              }
+            }
+
+            .file-type-count {
+              font-size: $font-size-xs;
+              color: $text-secondary;
+            }
+          }
+        }
+      }
+    }
+
+    .large-files-panel {
+      @include card($spacing-md);
+
+      .large-files-list {
+        @include flex-column($spacing-sm);
+
+        .large-file-item {
+          display: flex;
+          align-items: center;
+          gap: $spacing-md;
+          padding: $spacing-sm;
+          background: rgba($bg-darker, 0.3);
+          border-radius: $border-radius-sm;
+          transition: all $transition-speed-fast ease;
+
+          &:hover {
+            background: rgba($bg-darker, 0.5);
+          }
+
+          .file-rank {
+            @include flex-center;
+            width: 32px;
+            height: 32px;
+            background: rgba($primary-color, 0.15);
+            border-radius: $border-radius-circle;
+            font-size: $font-size-sm;
+            color: $primary-color;
+            font-weight: 600;
+          }
+
+          .file-details {
+            flex: 1;
+            min-width: 0;
+
+            .file-name {
+              display: block;
+              font-size: $font-size-sm;
+              color: $text-primary;
+              font-weight: 500;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+
+            .file-path {
+              display: block;
+              font-size: $font-size-xs;
+              color: $text-secondary;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+          }
+
+          .file-meta {
+            text-align: right;
+
+            .file-size {
+              display: block;
+              font-size: $font-size-sm;
+              color: $primary-color;
+              font-weight: 500;
+            }
+
+            .file-modified {
+              font-size: $font-size-xs;
+              color: $text-secondary;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Summary Section
+  .summary-section {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: $spacing-md;
+
+    @media (max-width: 900px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 500px) {
+      grid-template-columns: 1fr;
+    }
+
+    .summary-card {
+      @include card($spacing-md);
+      text-align: center;
+
+      .summary-label {
+        font-size: $font-size-sm;
+        color: $text-secondary;
+        margin-bottom: $spacing-xs;
+      }
+
+      .summary-value {
+        font-size: $font-size-xl;
+        color: $primary-color;
+        font-weight: 600;
+        @include text-glow($primary-color, 0.5);
+      }
+    }
+  }
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AEGIS Logo Parts Preview</title>
+  <style>
+    body {
+      background: #0a0a1a;
+      color: #4dc9ff;
+      font-family: monospace;
+      padding: 20px;
+    }
+    h1, h2 { text-align: center; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .card {
+      background: #111;
+      border: 1px solid #4dc9ff33;
+      border-radius: 8px;
+      padding: 15px;
+      text-align: center;
+    }
+    .card h3 {
+      margin: 0 0 10px 0;
+      font-size: 12px;
+    }
+    .card object {
+      width: 100%;
+      height: 120px;
+      object-fit: contain;
+    }
+    .full-width {
+      grid-column: 1 / -1;
+    }
+    .full-width object {
+      height: 200px;
+    }
+  </style>
+</head>
+<body>
+  <h1>AEGIS Logo Parts - 分解版</h1>
+
+  <h2>パーツ一覧</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>1. Circle (円)<br>外周弧装飾</h3>
+      <object data="circle.svg" type="image/svg+xml"></object>
+    </div>
+    <div class="card">
+      <h3>2. Shield (盾)<br>盾と左右要素</h3>
+      <object data="shield.svg" type="image/svg+xml"></object>
+    </div>
+    <div class="card">
+      <h3>3. Cross (十字架)<br>中央デザイン</h3>
+      <object data="cross.svg" type="image/svg+xml"></object>
+    </div>
+    <div class="card">
+      <h3>4. Text (文字)<br>AEGIS</h3>
+      <object data="text.svg" type="image/svg+xml"></object>
+    </div>
+    <div class="card full-width">
+      <h3>Combined (全パーツ結合)</h3>
+      <object data="combined.svg" type="image/svg+xml"></object>
+    </div>
+  </div>
+</body>
+</html>

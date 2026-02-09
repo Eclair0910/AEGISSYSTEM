@@ -1,0 +1,71 @@
+@import '../../../shared/styles/variables.scss';
+@import '../../../shared/styles/mixins.scss';
+
+.system-monitor {
+  @include flex-column($spacing-xxl);
+  padding: $spacing-xl;
+  max-width: 1600px;
+  margin: 0 auto;
+  width: 100%;
+
+  &.loading,
+  &.error {
+    @include flex-center;
+    height: 100%;
+    text-align: center;
+
+    p {
+      margin-top: $spacing-md;
+      color: $text-secondary;
+      font-size: $font-size-lg;
+    }
+  }
+
+  .section-title {
+    font-size: $font-size-xl;
+    color: $primary-color;
+    @include text-glow($primary-color, 0.8);
+    margin-bottom: $spacing-lg;
+    font-weight: 600;
+  }
+
+  .charts-section {
+    .charts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: $spacing-lg;
+      width: 100%;
+    }
+  }
+
+  .overview-section {
+    .monitor-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: $spacing-xl;
+      width: 100%;
+
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+
+  .gpu-section {
+    width: 100%;
+  }
+
+  .processes-section {
+    width: 100%;
+  }
+
+  .timestamp {
+    text-align: center;
+    color: $text-secondary;
+    font-size: $font-size-sm;
+    padding: $spacing-md;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: $border-radius-md;
+    border: 1px solid rgba($primary-color, 0.1);
+  }
+}

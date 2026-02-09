@@ -1,0 +1,60 @@
+@import '../../../shared/styles/variables.scss';
+@import '../../../shared/styles/mixins.scss';
+
+.window-controls-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: $z-overlay;
+
+  .title-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 36px;
+    padding: 0 $spacing-md;
+    background: rgba($bg-darker, 0.9);
+    backdrop-filter: blur(10px);
+
+    .app-title {
+      font-size: $font-size-sm;
+      font-weight: 500;
+      color: $text-secondary;
+      letter-spacing: 0.5px;
+    }
+
+    .window-controls {
+      display: flex;
+      gap: 0;
+
+      .window-control-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 46px;
+        height: 36px;
+        background: transparent;
+        border: none;
+        color: $text-secondary;
+        cursor: pointer;
+        transition: background 0.1s ease;
+
+        svg {
+          width: 10px;
+          height: 10px;
+        }
+
+        &:hover {
+          background: rgba($text-primary, 0.1);
+          color: $text-primary;
+        }
+
+        &.close:hover {
+          background: #e81123;
+          color: white;
+        }
+      }
+    }
+  }
+}

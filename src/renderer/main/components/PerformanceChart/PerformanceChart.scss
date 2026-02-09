@@ -1,0 +1,30 @@
+@import '../../../shared/styles/variables.scss';
+@import '../../../shared/styles/mixins.scss';
+
+.performance-chart {
+  @include card($spacing-md);
+  @include flex-column($spacing-sm);
+
+  .chart-header {
+    @include flex-row;
+    justify-content: space-between;
+    align-items: center;
+
+    h4 {
+      font-size: $font-size-base;
+      color: $text-primary;
+      margin: 0;
+    }
+
+    .current-value {
+      font-size: $font-size-lg;
+      font-weight: bold;
+      color: $primary-color;
+      @include text-glow($primary-color, 0.5);
+    }
+  }
+
+  .highcharts-container {
+    width: 100% !important;
+  }
+}

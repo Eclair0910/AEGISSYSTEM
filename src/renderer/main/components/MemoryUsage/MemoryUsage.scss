@@ -1,0 +1,90 @@
+@import '../../../shared/styles/variables.scss';
+@import '../../../shared/styles/mixins.scss';
+
+.memory-usage {
+  @include card($spacing-lg);
+  @include flex-column($spacing-lg);
+  min-width: 300px;
+
+  .card-header {
+    @include flex-row($spacing-md);
+    justify-content: space-between;
+    align-items: center;
+
+    h3 {
+      font-size: $font-size-lg;
+      color: $primary-color;
+      @include text-glow($primary-color, 0.5);
+      margin: 0;
+    }
+
+    .icon {
+      font-size: $font-size-xl;
+    }
+  }
+
+  .circular-progress {
+    @include flex-center;
+    position: relative;
+    width: 160px;
+    height: 160px;
+    margin: 0 auto;
+
+    .progress-ring {
+      width: 100%;
+      height: 100%;
+      transform: rotate(-90deg);
+
+      .progress-bg {
+        fill: none;
+        stroke: rgba($primary-color, 0.1);
+        stroke-width: 8;
+      }
+
+      .progress-bar {
+        fill: none;
+        stroke: $primary-color;
+        stroke-width: 8;
+        stroke-linecap: round;
+        @include neon-glow($primary-color, 1.2);
+        transition: stroke-dasharray 0.3s ease;
+        animation: pulse-glow 2s ease-in-out infinite;
+      }
+    }
+
+    .progress-text {
+      @include absolute-center;
+
+      .percentage {
+        font-size: $font-size-xxl;
+        font-weight: bold;
+        color: $primary-color;
+        @include text-glow($primary-color, 1);
+      }
+    }
+  }
+
+  .memory-details {
+    @include flex-column($spacing-sm);
+
+    .detail-row {
+      @include flex-row($spacing-md);
+      justify-content: space-between;
+      padding: $spacing-sm $spacing-md;
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: $border-radius-sm;
+      border-left: 2px solid $primary-color;
+
+      .label {
+        color: $text-secondary;
+        font-size: $font-size-sm;
+      }
+
+      .value {
+        color: $text-primary;
+        font-weight: 600;
+        font-size: $font-size-sm;
+      }
+    }
+  }
+}
