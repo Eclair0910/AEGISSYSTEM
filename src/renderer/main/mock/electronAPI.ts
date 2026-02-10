@@ -78,7 +78,16 @@ const generateMockSystemInfo = (): SystemInfo => {
       interface: 'Ethernet',
       sent: Math.random() * 1024 * 1024 * 100,
       received: Math.random() * 1024 * 1024 * 200,
-      speed: 1000
+      speed: 1000,
+      ip4: '192.168.1.100',
+      ip6: 'fe80::1',
+      mac: 'AA:BB:CC:DD:EE:FF',
+      type: 'wired',
+      operstate: 'up',
+      txSec: Math.random() * 1024 * 1024 * 5,
+      rxSec: Math.random() * 1024 * 1024 * 10,
+      totalSent: 2.5 * 1024 * 1024 * 1024 + Math.random() * 1024 * 1024,
+      totalReceived: 8.3 * 1024 * 1024 * 1024 + Math.random() * 1024 * 1024
     },
     topProcesses,
     timestamp: Date.now()

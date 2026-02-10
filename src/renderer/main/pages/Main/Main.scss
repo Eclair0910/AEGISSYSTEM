@@ -7,21 +7,546 @@
   max-width: 1400px;
   margin: 0 auto;
   width: 100%;
-  height: 100%;
 
-  .page-header {
-    @include page-header;
-  }
-
-  .content-placeholder {
+  &.loading,
+  &.error {
     @include flex-center;
-    @include card($spacing-xl);
-    min-height: 400px;
+    height: 100%;
     text-align: center;
 
     p {
+      margin-top: $spacing-md;
       color: $text-secondary;
       font-size: $font-size-lg;
     }
   }
+
+  .spinner {
+    width: 48px;
+    height: 48px;
+    border: 3px solid rgba($primary-color, 0.2);
+    border-top-color: $primary-color;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+
+  // ── Page Header ──
+  .page-header {
+    @include page-header;
+
+    .header-timestamp {
+      color: $text-secondary;
+      font-size: $font-size-sm;
+    }
+  }
+
+  // ── Gauges Section ──
+  .gauges-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: $spacing-lg;
+
+    .health-card {
+      @include card($spacing-lg);
+      display: flex;
+      align-items: center;
+      gap: $spacing-md;
+      position: relative;
+      overflow: hidden;
+      transition: border-color $transition-speed;
+
+      &[data-status='critical'] {
+        border-color: rgba(#ff4444, 0.4);
+      }
+      &[data-status='warning'] {
+        border-color: rgba(#ffaa00, 0.4);
+      }
+      &[data-status='good'] {
+        border-color: rgba($primary-color, 0.4);
+      }
+      &[data-status='excellent'] {
+        border-color: rgba(#00cc66, 0.4);
+      }
+
+      .health-icon {
+        flex-shrink: 0;
+      }
+
+      .health-info {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        min-width: 0;
+
+        .health-label {
+          font-size: $font-size-xs;
+          color: $text-secondary;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+        }
+
+        .health-status {
+          font-size: $font-size-lg;
+          font-weight: 700;
+          letter-spacing: 2px;
+        }
+      }
+
+      .health-pulse {
+        position: absolute;
+        top: $spacing-md;
+        right: $spacing-md;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        animation: pulse 2s ease-in-out infinite;
+      }
+    }
+  }
+
+  // ── Gauge Widget ──
+  .gauge-widget {
+    @include card($spacing-md);
+    @include flex-column($spacing-sm);
+    align-items: center;
+    transition: border-color $transition-speed;
+
+    &:hover {
+      border-color: rgba($primary-color, 0.3);
+    }
+
+    .gauge-header {
+      display: flex;
+      align-items: center;
+      gap: $spacing-sm;
+      width: 100%;
+
+      .gauge-icon {
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+
+        svg {
+          font-size: 20px;
+        }
+      }
+
+      .gauge-label {
+        font-size: $font-size-sm;
+        color: $text-secondary;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 600;
+      }
+    }
+
+    .gauge-ring {
+      position: relative;
+      width: 110px;
+      height: 110px;
+
+      svg {
+        width: 100%;
+        height: 100%;
+        transform: rotate(-90deg);
+
+        .gauge-bg {
+          fill: none;
+          stroke: rgba(255, 255, 255, 0.06);
+          stroke-width: 6;
+        }
+
+        .gauge-fill {
+          fill: none;
+          stroke-width: 6;
+          stroke-linecap: round;
+          transition: stroke-dashoffset 0.6s $ease-out-cubic;
+        }
+      }
+
+      .gauge-value {
+        @include absolute-center;
+        font-size: $font-size-lg;
+        font-weight: 700;
+        font-family: 'Roboto Mono', monospace;
+      }
+    }
+
+    .gauge-subtitle {
+      font-size: $font-size-xs;
+      color: $text-secondary;
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+    }
+  }
+
+  // ── Info Section (Disk + Network) ──
+  .info-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-lg;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+
+    .widget-title {
+      display: flex;
+      align-items: center;
+      gap: $spacing-sm;
+      font-size: $font-size-base;
+      color: $primary-color;
+      @include text-glow($primary-color, 0.5);
+      margin: 0 0 $spacing-md 0;
+      font-weight: 600;
+
+      svg {
+        font-size: 20px;
+      }
+    }
+  }
+
+  .disk-widget {
+    @include card($spacing-lg);
+
+    .disk-info {
+      display: flex;
+      align-items: center;
+      gap: $spacing-lg;
+    }
+
+    .disk-ring-container {
+      position: relative;
+      width: 90px;
+      height: 90px;
+      flex-shrink: 0;
+
+      .disk-ring {
+        width: 100%;
+        height: 100%;
+        transform: rotate(-90deg);
+
+        .disk-bg {
+          fill: none;
+          stroke: rgba(255, 255, 255, 0.06);
+          stroke-width: 8;
+        }
+
+        .disk-fill {
+          fill: none;
+          stroke: $accent-color;
+          stroke-width: 8;
+          stroke-linecap: round;
+          transition: stroke-dashoffset 0.6s $ease-out-cubic;
+        }
+      }
+
+      .disk-percent {
+        @include absolute-center;
+        font-size: $font-size-base;
+        font-weight: 700;
+        color: $accent-color;
+        font-family: 'Roboto Mono', monospace;
+      }
+    }
+
+    .disk-details {
+      @include flex-column($spacing-sm);
+      flex: 1;
+      min-width: 0;
+
+      .detail-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .label {
+          font-size: $font-size-sm;
+          color: $text-secondary;
+        }
+
+        .value {
+          font-size: $font-size-sm;
+          color: $text-primary;
+          font-family: 'Roboto Mono', monospace;
+        }
+      }
+    }
+  }
+
+  .network-widget {
+    @include card($spacing-lg);
+
+    .network-info {
+      @include flex-column($spacing-md);
+    }
+
+    .speed-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: $spacing-sm $spacing-md;
+      border-radius: $border-radius-sm;
+      background: rgba(255, 255, 255, 0.03);
+
+      &.upload {
+        border-left: 3px solid $secondary-color;
+
+        .speed-value {
+          color: $secondary-color;
+        }
+      }
+
+      &.download {
+        border-left: 3px solid $primary-color;
+
+        .speed-value {
+          color: $primary-color;
+        }
+      }
+
+      .speed-label {
+        font-size: $font-size-sm;
+        color: $text-secondary;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .speed-value {
+        font-size: $font-size-base;
+        font-weight: 600;
+        font-family: 'Roboto Mono', monospace;
+      }
+    }
+
+    .network-meta {
+      display: flex;
+      justify-content: space-between;
+      padding-top: $spacing-sm;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: $font-size-xs;
+      color: $text-secondary;
+    }
+  }
+
+  // ── Events Section ──
+  .events-section {
+    @include card($spacing-lg);
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: $spacing-md;
+
+      .widget-title {
+        display: flex;
+        align-items: center;
+        gap: $spacing-sm;
+        font-size: $font-size-base;
+        color: $primary-color;
+        @include text-glow($primary-color, 0.5);
+        margin: 0;
+        font-weight: 600;
+
+        svg {
+          font-size: 20px;
+        }
+      }
+
+      .view-all-btn {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        background: none;
+        border: 1px solid rgba($primary-color, 0.3);
+        color: $primary-color;
+        font-size: $font-size-xs;
+        padding: 6px 12px;
+        border-radius: $border-radius-sm;
+        cursor: pointer;
+        transition: all $transition-speed;
+
+        svg {
+          font-size: 14px;
+        }
+
+        &:hover {
+          background: rgba($primary-color, 0.1);
+          border-color: $primary-color;
+        }
+      }
+    }
+
+    .events-list {
+      @include flex-column(0);
+
+      .event-item {
+        display: flex;
+        align-items: center;
+        gap: $spacing-md;
+        padding: $spacing-sm $spacing-md;
+        border-radius: $border-radius-sm;
+        transition: background $transition-speed;
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.03);
+        }
+
+        &:not(:last-child) {
+          border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .event-icon {
+          display: flex;
+          align-items: center;
+          flex-shrink: 0;
+
+          svg {
+            font-size: 18px;
+          }
+        }
+
+        &.error .event-icon svg {
+          color: #ff4444;
+        }
+        &.warning .event-icon svg {
+          color: #ffaa00;
+        }
+        &.information .event-icon svg {
+          color: $primary-color;
+        }
+
+        .event-content {
+          flex: 1;
+          min-width: 0;
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+
+          .event-source {
+            font-size: $font-size-xs;
+            color: $text-secondary;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+          }
+
+          .event-message {
+            font-size: $font-size-sm;
+            color: $text-primary;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+        }
+
+        .event-time {
+          font-size: $font-size-xs;
+          color: $text-secondary;
+          white-space: nowrap;
+          font-family: 'Roboto Mono', monospace;
+        }
+      }
+    }
+  }
+
+  // ── Navigation Section ──
+  .nav-section {
+    .section-title {
+      font-size: $font-size-xl;
+      color: $primary-color;
+      @include text-glow($primary-color, 0.8);
+      margin-bottom: $spacing-lg;
+      font-weight: 600;
+    }
+
+    .nav-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: $spacing-md;
+    }
+
+    .nav-card {
+      @include card($spacing-md);
+      display: flex;
+      align-items: center;
+      gap: $spacing-md;
+      cursor: pointer;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all $transition-speed;
+      text-align: left;
+      color: inherit;
+      width: 100%;
+      font-family: inherit;
+
+      &:hover {
+        border-color: rgba($primary-color, 0.4);
+        background: rgba($primary-color, 0.05);
+        transform: translateY(-2px);
+
+        .nav-card-arrow {
+          color: $primary-color;
+          transform: translateX(4px);
+        }
+      }
+
+      .nav-card-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: $border-radius-md;
+        background: rgba($primary-color, 0.1);
+        color: $primary-color;
+        flex-shrink: 0;
+
+        svg {
+          font-size: 22px;
+        }
+      }
+
+      .nav-card-info {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+
+        .nav-card-label {
+          font-size: $font-size-sm;
+          color: $text-primary;
+          font-weight: 600;
+        }
+
+        .nav-card-desc {
+          font-size: $font-size-xs;
+          color: $text-secondary;
+        }
+      }
+
+      .nav-card-arrow {
+        color: $text-secondary;
+        flex-shrink: 0;
+        transition: all $transition-speed;
+
+        svg {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+}
+
+// ── Animations ──
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
 }

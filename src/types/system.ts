@@ -55,6 +55,15 @@ export interface NetworkInfo {
   sent: number;
   received: number;
   speed?: number;
+  ip4?: string;
+  ip6?: string;
+  mac?: string;
+  type?: string;
+  operstate?: string;
+  txSec?: number;
+  rxSec?: number;
+  totalSent?: number;
+  totalReceived?: number;
 }
 
 export interface SystemInfo {

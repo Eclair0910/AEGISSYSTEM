@@ -7,6 +7,7 @@ import Main from './pages/Main/Main';
 import Performance from './pages/Performance/Performance';
 import Test from './pages/Test/Test';
 import Logo from './pages/Logo/Logo';
+import Network from './pages/Network/Network';
 import SystemInfo from './pages/SystemInfo/SystemInfo';
 import EventLog from './pages/EventLog/EventLog';
 import DiskAnalyzer from './pages/DiskAnalyzer/DiskAnalyzer';
@@ -24,7 +25,7 @@ const App: React.FC = () => {
           <Sidebar />
           <main className="main-content">
             <Routes>
-              <Route path="/main" element={<Main />} />
+              <Route path="/main" element={<Main systemInfo={systemInfo} isLoading={isLoading} error={error} />} />
               <Route
                 path="/performance"
                 element={
@@ -35,6 +36,7 @@ const App: React.FC = () => {
                   />
                 }
               />
+              <Route path="/network" element={<Network systemInfo={systemInfo} isLoading={isLoading} error={error} />} />
               <Route path="/test" element={<Test />} />
               <Route path="/logo" element={<Logo />} />
               <Route path="/system-info" element={<SystemInfo />} />

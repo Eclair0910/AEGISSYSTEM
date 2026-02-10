@@ -646,27 +646,27 @@ $cyan-glow-strong: 0 0 15px rgba(77, 201, 255, 1), 0 0 30px rgba(77, 201, 255, 0
       .dot:nth-child(1) {
         animation-delay: 0.15s;
         position: absolute;
-        left: 94px;
+        left: 67px;
       }
       .dot:nth-child(2) {
         animation-delay: 0.3s;
         position: absolute;
-        left: 136px;
+        left: 109px;
       }
       .dot:nth-child(3) {
         animation-delay: 0.45s;
         position: absolute;
-        left: 179px;
+        left: 152px;
       }
       .dot:nth-child(4) {
         animation-delay: 0.6s;
         position: absolute;
-        left: 198px;
+        left: 171px;
       }
       .dot:nth-child(5) {
         animation-delay: 0.75s;
         position: absolute;
-        left: 244px;
+        left: 217px;
       }
     }
 
@@ -790,7 +790,7 @@ $cyan-glow-strong: 0 0 15px rgba(77, 201, 255, 1), 0 0 30px rgba(77, 201, 255, 0
     opacity: 1;
   }
   to {
-    transform: translateY(280px) translateX(57px);
+    transform: translateY(280px) translateX(30px);
     opacity: 1;
   }
 }
@@ -802,7 +802,7 @@ $cyan-glow-strong: 0 0 15px rgba(77, 201, 255, 1), 0 0 30px rgba(77, 201, 255, 0
     opacity: 1;
   }
   to {
-    transform: translateY(220px) translateX(102px);
+    transform: translateY(220px) translateX(75px);
     opacity: 1;
   }
 }
@@ -814,7 +814,7 @@ $cyan-glow-strong: 0 0 15px rgba(77, 201, 255, 1), 0 0 30px rgba(77, 201, 255, 0
     opacity: 1;
   }
   to {
-    transform: translateY(160px) translateX(142px);
+    transform: translateY(160px) translateX(115px);
     opacity: 1;
   }
 }
@@ -826,7 +826,7 @@ $cyan-glow-strong: 0 0 15px rgba(77, 201, 255, 1), 0 0 30px rgba(77, 201, 255, 0
     opacity: 1;
   }
   to {
-    transform: translateY(100px) translateX(187px);
+    transform: translateY(100px) translateX(160px);
     opacity: 1;
   }
 }
@@ -838,7 +838,7 @@ $cyan-glow-strong: 0 0 15px rgba(77, 201, 255, 1), 0 0 30px rgba(77, 201, 255, 0
     opacity: 1;
   }
   to {
-    transform: translateY(40px) translateX(207px);
+    transform: translateY(40px) translateX(180px);
     opacity: 1;
   }
 }

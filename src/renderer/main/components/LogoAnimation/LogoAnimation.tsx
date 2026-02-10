@@ -25,32 +25,26 @@ const LogoAnimation: React.FC<LogoAnimationProps> = ({
   const startAnimation = () => {
     setIsStarted(true);
 
-    // Phase 1: Text appears (0-3.8s) - 5 words with 0.6s delay each
-    setPhase('text');
+    // Phase 1: Text appears (0.2-4.0s) - 5 words with 0.6s delay each
+    setTimeout(() => setPhase('text'), 200);
 
-    // Phase 2: Initials collect (3.8-4.8s)
-    setTimeout(() => setPhase('initials'), 3800);
+    // Phase 2: Initials collect (4.0-5.0s)
+    setTimeout(() => setPhase('initials'), 4000);
 
-    // Phase 3: Wait 0.1s then show SVG spinning (4.8-4.9s)
-    setTimeout(() => setPhase('svg-spinning'), 4500);
+    // Phase 3: Wait 0.1s then show SVG spinning (5.0-5.1s)
+    setTimeout(() => setPhase('svg-spinning'), 4700);
 
-    // Phase 4: Show cross SVG after rotation (5.9s)
-    setTimeout(() => setPhase('svg-cross'), 5500);
+    // Phase 4: Show cross SVG after rotation (6.1s)
+    setTimeout(() => setPhase('svg-cross'), 5700);
 
-    // Phase 5: Complete (6.4s)
-    setTimeout(() => {
-      setPhase('complete');
-    }, 6400);
+    // Phase 5: Complete (6.6s)
+    setTimeout(() => setPhase('complete'), 6600);
 
-    // Phase 6: Fade out (7.4s) - 1 second after complete
-    setTimeout(() => {
-      setPhase('fade-out');
-    }, 7400);
+    // Phase 6: Fade out (7.0s) - 1 second after complete
+    setTimeout(() => setPhase('fade-out'), 7000);
 
-    // Animation complete callback (8.1s) - after fade out animation finishes
-    setTimeout(() => {
-      onAnimationComplete?.();
-    }, 8100);
+    // Animation complete callback (8.3s) - after fade out animation finishes
+    setTimeout(() => onAnimationComplete?.(), 8300);
   };
 
   const handleReplay = () => {
@@ -102,19 +96,19 @@ const LogoAnimation: React.FC<LogoAnimationProps> = ({
         <div className={`app-name ${phase === 'initials' || phase === 'svg-spinning' || phase === 'svg-cross' || phase === 'complete' || phase === 'fade-out' ? 'collect-initials' : ''}`}>
           <div className="word-line" style={{ '--word-delay': '0s' } as React.CSSProperties}>
             <span className="char initial">A</span>
-            <span className="char rest">dvanced</span>
+            <span className="char rest">nalytical</span>
           </div>
           <div className="word-line" style={{ '--word-delay': '0.6s' } as React.CSSProperties}>
             <span className="char initial">E</span>
-            <span className="char rest">nvironment</span>
+            <span className="char rest">valuation</span>
           </div>
           <div className="word-line" style={{ '--word-delay': '1.2s' } as React.CSSProperties}>
             <span className="char initial">G</span>
-            <span className="char rest">uard</span>
+            <span className="char rest">raphical</span>
           </div>
           <div className="word-line" style={{ '--word-delay': '1.8s' } as React.CSSProperties}>
             <span className="char initial">I</span>
-            <span className="char rest">ntelligence</span>
+            <span className="char rest">nterface</span>
           </div>
           <div className="word-line" style={{ '--word-delay': '2.4s' } as React.CSSProperties}>
             <span className="char initial">S</span>

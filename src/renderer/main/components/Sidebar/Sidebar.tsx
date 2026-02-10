@@ -5,6 +5,7 @@ import SpeedIcon from '@mui/icons-material/Speed';
 import ScienceIcon from '@mui/icons-material/Science';
 import ComputerIcon from '@mui/icons-material/Computer';
 import ArticleIcon from '@mui/icons-material/Article';
+import NetworkCheckIcon from '@mui/icons-material/NetworkCheck';
 import PieChartIcon from '@mui/icons-material/PieChart';
 import ShieldIcon from '@mui/icons-material/Shield';
 import SettingsIcon from '@mui/icons-material/Settings';
@@ -21,6 +22,7 @@ interface MenuItem {
 const menuItems: MenuItem[] = [
   { path: '/main', label: 'Main', icon: <HomeIcon /> },
   { path: '/performance', label: 'Performance', icon: <SpeedIcon /> },
+  { path: '/network', label: 'Network', icon: <NetworkCheckIcon /> },
   { path: '/system-info', label: 'System Info', icon: <ComputerIcon /> },
   { path: '/event-log', label: 'Event Log', icon: <ArticleIcon /> },
   { path: '/disk-analyzer', label: 'Disk Analyzer', icon: <PieChartIcon /> },

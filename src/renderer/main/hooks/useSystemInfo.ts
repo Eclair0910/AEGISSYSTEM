@@ -35,6 +35,29 @@ const getMockSystemInfo = (): SystemInfo => {
       utilizationMemory: 40 + Math.random() * 30,
       temperatureGpu: 50 + Math.random() * 20
     }],
+    disk: {
+      size: 1024 * 1024 * 1024 * 1024,
+      used: 512 * 1024 * 1024 * 1024,
+      available: 512 * 1024 * 1024 * 1024,
+      usedPercentage: 50,
+      fs: 'NTFS',
+      mount: 'C:'
+    },
+    network: {
+      interface: 'Ethernet',
+      sent: Math.random() * 1024 * 1024 * 100,
+      received: Math.random() * 1024 * 1024 * 200,
+      speed: 1000,
+      ip4: '192.168.1.100',
+      ip6: 'fe80::1',
+      mac: 'AA:BB:CC:DD:EE:FF',
+      type: 'wired',
+      operstate: 'up',
+      txSec: Math.random() * 1024 * 1024 * 5,
+      rxSec: Math.random() * 1024 * 1024 * 10,
+      totalSent: 2.5 * 1024 * 1024 * 1024 + Math.random() * 1024 * 1024,
+      totalReceived: 8.3 * 1024 * 1024 * 1024 + Math.random() * 1024 * 1024
+    },
     topProcesses: [
       { pid: 1001, name: 'Chrome', mem: 2000000000, memPercentage: 12.5 },
       { pid: 1002, name: 'VSCode', mem: 1500000000, memPercentage: 9.4 },
