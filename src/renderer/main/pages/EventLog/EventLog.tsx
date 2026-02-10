@@ -337,60 +337,62 @@ const EventLog: React.FC = () => {
           <span className="col-message">Message</span>
           <span className="col-expand"></span>
         </div>
-        {filteredEvents.map((event) => (
-          <div key={event.id} className={`event-item ${event.level.toLowerCase()}`}>
-            <div
-              className="event-row"
-              onClick={() => toggleExpand(event.id)}
-            >
-              <span className="col-level">{getLevelIcon(event.level)}</span>
-              <span className="col-timestamp">
-                <span className="full-time">{formatTimestamp(event.timestamp)}</span>
-                <span className="relative-time">{getRelativeTime(event.timestamp)}</span>
-              </span>
-              <span className="col-source">{event.source}</span>
-              <span className="col-eventid">{event.eventId}</span>
-              <span className="col-message">{event.message}</span>
-              <span className="col-expand">
-                {expandedEvent === event.id ? <ExpandLessIcon /> : <ExpandMoreIcon />}
-              </span>
-            </div>
-            {expandedEvent === event.id && (
-              <div className="event-details">
-                <div className="detail-grid">
-                  <div className="detail-item">
-                    <span className="detail-label">Event ID</span>
-                    <span className="detail-value">{event.eventId}</span>
-                  </div>
-                  <div className="detail-item">
-                    <span className="detail-label">Source</span>
-                    <span className="detail-value">{event.source}</span>
-                  </div>
-                  <div className="detail-item">
-                    <span className="detail-label">Category</span>
-                    <span className="detail-value">{event.category}</span>
-                  </div>
-                  <div className="detail-item">
-                    <span className="detail-label">Level</span>
-                    <span className={`detail-value level-badge ${event.level.toLowerCase()}`}>
-                      {event.level}
-                    </span>
-                  </div>
-                </div>
-                <div className="detail-message">
-                  <span className="detail-label">Full Message</span>
-                  <p className="message-text">{event.message}</p>
-                </div>
+        <div className="event-body">
+          {filteredEvents.map((event) => (
+            <div key={event.id} className={`event-item ${event.level.toLowerCase()}`}>
+              <div
+                className="event-row"
+                onClick={() => toggleExpand(event.id)}
+              >
+                <span className="col-level">{getLevelIcon(event.level)}</span>
+                <span className="col-timestamp">
+                  <span className="full-time">{formatTimestamp(event.timestamp)}</span>
+                  <span className="relative-time">{getRelativeTime(event.timestamp)}</span>
+                </span>
+                <span className="col-source">{event.source}</span>
+                <span className="col-eventid">{event.eventId}</span>
+                <span className="col-message">{event.message}</span>
+                <span className="col-expand">
+                  {expandedEvent === event.id ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+                </span>
               </div>
-            )}
-          </div>
-        ))}
-        {filteredEvents.length === 0 && (
-          <div className="no-events">
-            <SearchIcon className="no-events-icon" />
-            <p>No events match the current filter.</p>
-          </div>
-        )}
+              {expandedEvent === event.id && (
+                <div className="event-details">
+                  <div className="detail-grid">
+                    <div className="detail-item">
+                      <span className="detail-label">Event ID</span>
+                      <span className="detail-value">{event.eventId}</span>
+                    </div>
+                    <div className="detail-item">
+                      <span className="detail-label">Source</span>
+                      <span className="detail-value">{event.source}</span>
+                    </div>
+                    <div className="detail-item">
+                      <span className="detail-label">Category</span>
+                      <span className="detail-value">{event.category}</span>
+                    </div>
+                    <div className="detail-item">
+                      <span className="detail-label">Level</span>
+                      <span className={`detail-value level-badge ${event.level.toLowerCase()}`}>
+                        {event.level}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="detail-message">
+                    <span className="detail-label">Full Message</span>
+                    <p className="message-text">{event.message}</p>
+                  </div>
+                </div>
+              )}
+            </div>
+          ))}
+          {filteredEvents.length === 0 && (
+            <div className="no-events">
+              <SearchIcon className="no-events-icon" />
+              <p>No events match the current filter.</p>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

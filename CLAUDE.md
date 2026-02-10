@@ -265,6 +265,15 @@ graph TD
 
 ## Playwright MCP ルール
 
+### ブラウザ解像度
+Playwright MCPでブラウザを操作する際は、**必ずフルHD（1920x1080）** に設定すること。
+
+```
+browser_resize: { width: 1920, height: 1080 }
+```
+
+ページ遷移やブラウザ起動後の最初の操作前に、解像度を確認・設定する。
+
 ### スクリーンショット出力先
 Playwright MCPでスクリーンショットを撮影する際は、**必ず** `.playwright-screenshots/` ディレクトリに出力すること。
 
